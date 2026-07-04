@@ -2616,28 +2616,16 @@ console.log('='.repeat(50));
 // ============================================
 import express from 'express';
 import qrcode from 'qrcode';
-import fs from 'fs';
+// HAPUS: import fs from 'fs'; → SUDAH ADA DI ATAS!
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 let qrCodeData = null;
 
-// Simpan QR Code dari bot
-const bot = new WhatsAppBot({
-    onQR: (qr) => {
-        qrCodeData = qr;
-        console.log('✅ QR Code siap di-scan!');
-    },
-    onMessage: async ({ sock, messageContent, senderId, isGroup }) => {
-        // ... kode bot lo
-    }
-});
-
 // Halaman web dengan QR Code
 app.get('/', async (req, res) => {
     if (qrCodeData) {
-        // Generate QR Code image
         const qrImage = await qrcode.toDataURL(qrCodeData);
         res.send(`
             <!DOCTYPE html>
@@ -2646,59 +2634,13 @@ app.get('/', async (req, res) => {
                 <title>JHON338 BOT</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        background: #0a0a0a;
-                        color: #fff;
-                        padding: 20px;
-                    }
-                    .container {
-                        max-width: 500px;
-                        margin: 0 auto;
-                        background: #1a1a1a;
-                        padding: 30px;
-                        border-radius: 20px;
-                        box-shadow: 0 0 30px rgba(0,255,0,0.1);
-                    }
-                    h1 {
-                        color: #00ff88;
-                        font-size: 28px;
-                        margin-bottom: 10px;
-                    }
-                    .status {
-                        color: #00ff88;
-                        font-size: 18px;
-                        margin-bottom: 20px;
-                    }
-                    .qr-container {
-                        background: #fff;
-                        padding: 20px;
-                        border-radius: 15px;
-                        display: inline-block;
-                    }
-                    img {
-                        max-width: 100%;
-                        height: auto;
-                    }
-                    .footer {
-                        margin-top: 20px;
-                        color: #666;
-                        font-size: 14px;
-                    }
-                    .refresh-btn {
-                        background: #00ff88;
-                        color: #000;
-                        border: none;
-                        padding: 10px 30px;
-                        border-radius: 10px;
-                        font-size: 16px;
-                        cursor: pointer;
-                        margin-top: 15px;
-                    }
-                    .refresh-btn:hover {
-                        background: #00cc66;
-                    }
+                    body { font-family: Arial; text-align: center; background: #0a0a0a; color: #fff; padding: 20px; }
+                    .container { max-width: 500px; margin: 0 auto; background: #1a1a1a; padding: 30px; border-radius: 20px; }
+                    h1 { color: #00ff88; }
+                    .status { color: #00ff88; }
+                    .qr-container { background: #fff; padding: 20px; border-radius: 15px; display: inline-block; }
+                    img { max-width: 100%; }
+                    .refresh-btn { background: #00ff88; color: #000; border: none; padding: 10px 30px; border-radius: 10px; cursor: pointer; }
                 </style>
             </head>
             <body>
@@ -2708,15 +2650,9 @@ app.get('/', async (req, res) => {
                     <div class="qr-container">
                         <img src="${qrImage}" alt="QR Code">
                     </div>
-                    <p style="margin-top: 15px; color: #aaa;">
-                        Scan dengan WhatsApp
-                    </p>
-                    <button class="refresh-btn" onclick="location.reload()">
-                        🔄 Refresh QR Code
-                    </button>
-                    <div class="footer">
-                        🚀 GASKEUN BRO!
-                    </div>
+                    <p>Scan dengan WhatsApp</p>
+                    <button class="refresh-btn" onclick="location.reload()">🔄 Refresh</button>
+                    <div>🚀 GASKEUN BRO!</div>
                 </div>
             </body>
             </html>
@@ -2729,50 +2665,19 @@ app.get('/', async (req, res) => {
                 <title>JHON338 BOT</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                        text-align: center;
-                        background: #0a0a0a;
-                        color: #fff;
-                        padding: 20px;
-                    }
-                    .container {
-                        max-width: 500px;
-                        margin: 0 auto;
-                        background: #1a1a1a;
-                        padding: 30px;
-                        border-radius: 20px;
-                    }
-                    h1 {
-                        color: #ff8800;
-                        font-size: 28px;
-                    }
-                    .loading {
-                        color: #ffaa00;
-                        font-size: 18px;
-                        animation: blink 1s infinite;
-                    }
-                    @keyframes blink {
-                        0%, 100% { opacity: 1; }
-                        50% { opacity: 0.3; }
-                    }
-                    .footer {
-                        margin-top: 20px;
-                        color: #666;
-                        font-size: 14px;
-                    }
+                    body { font-family: Arial; text-align: center; background: #0a0a0a; color: #fff; padding: 20px; }
+                    .container { max-width: 500px; margin: 0 auto; background: #1a1a1a; padding: 30px; border-radius: 20px; }
+                    h1 { color: #ff8800; }
+                    .loading { color: #ffaa00; animation: blink 1s infinite; }
+                    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
                 </style>
             </head>
             <body>
                 <div class="container">
                     <h1>🤖 JHON338 BOT</h1>
                     <p class="loading">⏳ Menunggu QR Code...</p>
-                    <p style="color: #888; font-size: 14px;">
-                        Refresh halaman dalam beberapa detik
-                    </p>
-                    <div class="footer">
-                        🚀 GASKEUN BRO!
-                    </div>
+                    <p>Refresh dalam beberapa detik</p>
+                    <div>🚀 GASKEUN BRO!</div>
                 </div>
             </body>
             </html>
@@ -2781,10 +2686,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-    res.json({ 
-        status: 'online',
-        qr_ready: qrCodeData ? true : false
-    });
+    res.json({ status: 'online', qr_ready: qrCodeData ? true : false });
 });
 
 // Web server nyala dulu
