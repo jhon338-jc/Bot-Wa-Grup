@@ -2611,6 +2611,30 @@ console.log(`🧹 Watermark Remover: ✅ TERINSTAL (GRATIS!)`);
 console.log(`🖼️ Background Remover: ✅ TERINSTAL (GRATIS!)`);
 console.log('='.repeat(50));
 
+// ============================================
+// 🌐 WEB SERVER - HARUS DI ATAS BOT.START()!
+// ============================================
+import express from 'express';
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send(`
+        <h1>🤖 JHON338 BOT</h1>
+        <p>Status: <strong>✅ ONLINE</strong></p>
+        <p>🚀 GASKEUN BRO!</p>
+    `);
+});
+
+app.get('/health', (req, res) => {
+    res.json({ status: 'online' });
+});
+
+// WEB SERVER NYALA DULU
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ Web server running on port ${PORT}`);
+});
+
 const sock = await bot.start();
 console.log(`✅ ${sock?.user?.name || 'JHON BOT'} ONLINE!`);
 console.log(`📋 AI Provider: ${PROVIDERS.length}`);
