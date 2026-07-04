@@ -1,0 +1,36 @@
+{
+  "name": "bot-wa-grup",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot untuk grup tertentu",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.109.0",
+    "@google/generative-ai": "^0.24.1",
+    "@napi-rs/canvas": "^1.0.2",
+    "ai-gateway-lite": "^0.1.0",
+    "axios": "^1.18.1",
+    "canvas": "^3.2.3",
+    "deepseek-sdk": "^1.0.0",
+    "dotenv": "^17.4.2",
+    "groq-sdk": "^1.3.0",
+    "openai": "^6.45.0",
+    "puppeteer": "^25.3.0",
+    "puppeteer-core": "^25.3.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "replicate": "^1.4.0",
+    "sharp": "^0.35.3",
+    "whatsapp-automator": "^1.0.3"
+  }
+}
