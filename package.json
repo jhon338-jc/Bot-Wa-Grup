@@ -30,6 +30,7 @@
     "puppeteer-core": "^25.3.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "qrcode": "^1.5.4",
     "replicate": "^1.4.0",
     "sharp": "^0.35.3",
     "whatsapp-automator": "^1.0.3"
