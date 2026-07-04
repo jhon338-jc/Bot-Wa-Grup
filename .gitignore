@@ -1,0 +1,21 @@
+# Environment variables
+.env
+
+# WhatsApp session
+auth_info/
+
+# Dependencies
+node_modules/
+
+# Temporary files
+temp/
+tmp/
+*.log
+
+# Large files (ga perlu diupload)
+*.tar.xz
+ffmpeg-8.1.2-essentials_build/
+
+# OS files
+.DS_Store
+Thumbs.db
